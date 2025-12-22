@@ -1,0 +1,24 @@
+<!-- <p>{{todoService.todoItems[0].title}}</p> -->
+ <h2>Todos List</h2>
+ <!-- <p *ngIf="!todos().length">Loading....</p> -->
+@if(!todos().length){
+    <p>loading..........</p>
+}
+
+<form action="">
+  <label for="">filter Todos</label>
+<input name='searchTerm'    [(ngModel)]="searchTerm"     placeholder="search todo...">
+</form>
+
+
+<ul class="todos">
+  <li appHighlightCompletedTodo [iscompleted]="todo.completed "class="todos__item" *ngFor="let todo of todos()|filterTodos : searchTerm()">
+    <app-todo-item [todo]="todo"     (todoToggled)="updatetodoitem($event)"/>
+  </li>
+</ul>
+<!-- <p>{{todos()[0].title}}</p> -->
+<!-- @for (todo of todos(); track todo.id) {
+    <p>{{todo.title}}</p>
+} -->
+
+<!-- https://dummyjson.com/todos -->
